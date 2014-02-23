@@ -2,7 +2,7 @@
 
 $plugin_info = array(
   'pi_name'        => 'Input',
-  'pi_version'     => '1.0.1',
+  'pi_version'     => '1.0.2',
   'pi_author'      => 'Steve Pedersen',
   'pi_author_url'  => 'http://www.bluecoastweb.com/',
   'pi_description' => 'Return value from HTTP Request',
@@ -125,7 +125,7 @@ Or use any of the above as a tag pair:
     The value of the HTTP_REFERER (sic) header is: {referrer}
   {/exp:input:parse}
 
-Bonus! Grab the current uri early (rather than ultra late via the {current_url} global var):
+Grab the current url early (rather than ultra late via the {current_url} global var):
 
   {exp:input:url}
 
