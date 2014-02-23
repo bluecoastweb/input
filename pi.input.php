@@ -61,6 +61,15 @@ class Input {
     return $this->_value_from('server');
   }
 
+  public function uri() {
+      return $this->EE->functions->fetch_current_uri();
+  }
+
+  // who really cares what the difference is?
+  public function url() {
+      return $this->uri();
+  }
+
   private function _value_from($type) {
     $name = $this->EE->TMPL->fetch_param('name');
     if ($type == 'env') {
@@ -84,37 +93,41 @@ class Input {
 ?>
 Return the value of an HTTP GET parameter named "page":
 
-{exp:input:get name="page"}
+  {exp:input:get name="page"}
 
 Return the value of an HTTP GET or POST parameter named "login":
 
-{exp:input:get_post name="login"}
+  {exp:input:get_post name="login"}
 
 or:
 
-{exp:input:request name="login"}
+  {exp:input:request name="login"}
 
 Return the value of HTTP Header named "SERVER_ADDR":
 
-{exp:input:header name="SERVER_ADDR"}
+  {exp:input:header name="SERVER_ADDR"}
 
 or:
 
-{exp:input:server name="SERVER_ADDR"}
+  {exp:input:server name="SERVER_ADDR"}
 
 Return the value of a cookie named "exp_chocolate_chip":
 
-{exp:input:cookie name="chocolate_chip"}
+  {exp:input:cookie name="chocolate_chip"}
 
 Or use any of the above as a tag pair:
 
-{exp:input:parse type="cookie" name="peanut_butter"}
-The value of the exp_peanut_butter cookie is: {peanut_butter}
-{/exp:input:parse}
+  {exp:input:parse type="cookie" name="peanut_butter"}
+    The value of the exp_peanut_butter cookie is: {peanut_butter}
+  {/exp:input:parse}
 
-{exp:input:parse type="header" name="HTTP_REFERER" variable="referrer"}
-The value of the HTTP_REFERER (sic) header is: {referrer}
-{/exp:input:parse}
+  {exp:input:parse type="header" name="HTTP_REFERER" variable="referrer"}
+    The value of the HTTP_REFERER (sic) header is: {referrer}
+  {/exp:input:parse}
+
+Bonus! Grab the current uri early (rather than ultra late via the {current_url} global var):
+
+  {exp:input:url}
 
 Cookie note:
 
@@ -122,12 +135,8 @@ The "name" parameter of the cookie tag is without the EE cookie prefix (by
 default "exp_"). You can ascertain the effective EE cookie prefix by viewing the
 output of the following tag:
 
-{exp:input:cookie_prefix}
+  {exp:input:cookie_prefix}
 
-Implementation note:
-
-This plugin is basically a wrapper around the native EE input() function,
-which in turn is basically a wrapper around PHP superglobals.
 <?php
     $buffer = ob_get_contents();
     ob_end_clean();
