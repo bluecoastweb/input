@@ -34,3 +34,16 @@ Specify the name of the interpolated variable if necessary:
         The value of the HTTP_REFERER (sic) header is: {referrer}
 
     {/exp:input:parse}
+
+
+Grab the current url early (rather than ultra late via the {current_url} global var):
+
+    {exp:input:url}
+
+Cookie note:
+
+The "name" parameter of the cookie tag is without the EE cookie prefix (by
+default "exp_"). You can ascertain the effective EE cookie prefix by viewing the
+output of the following tag:
+
+    {exp:input:cookie_prefix}
