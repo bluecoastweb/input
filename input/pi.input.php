@@ -2,7 +2,7 @@
 
 $plugin_info = array(
   'pi_name'        => 'Input',
-  'pi_version'     => '1.0.2',
+  'pi_version'     => '1.2',
   'pi_author'      => 'Steve Pedersen',
   'pi_author_url'  => 'http://www.bluecoastweb.com/',
   'pi_description' => 'Return value from HTTP Request',
